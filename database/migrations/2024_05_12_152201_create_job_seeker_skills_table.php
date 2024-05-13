@@ -13,11 +13,14 @@ return new class extends Migration
     {
         Schema::create('job_seeker_skills', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('job_seekers_id'); 
+            $table->unsignedBigInteger('skills_id'); 
             $table->foreign('job_seekers_id')->references('id')->on('job_seekers');
             $table->foreign('skills_id')->references('id')->on('skills'); 
             $table->timestamps();
         });
     }
+    
 
     /**
      * Reverse the migrations.

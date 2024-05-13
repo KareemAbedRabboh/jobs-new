@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('social_media', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('companies_id');
             $table->foreign('companies_id')->references('id')->on('companies');
             $table->string('SocialMediaName');
             $table->string('url');
             $table->timestamps();
         });
     }
+    
 
     /**
      * Reverse the migrations.

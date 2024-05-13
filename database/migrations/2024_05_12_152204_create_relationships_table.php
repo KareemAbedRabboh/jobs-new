@@ -13,18 +13,7 @@ return new class extends Migration
     {
         Schema::create('relationships', function (Blueprint $table) {
             $table->id();
-            $table->foreign('job_levels_id')->references('id')->on('job_levels');
-            $table->foreign('companies_id')->references('id')->on('companies');
-            $table->foreign('cities_id')->references('id')->on('cities');
-            $table->string('JobTitle');
-            $table->string('StartDate');
-            $table->string('EndDate');
-            $table->integer('JobSalary');
-            $table->string('phoneNumber');
-            $table->string('JobDescription');
-            $table->string('Address');
-            $table->string('ContractType');
-            $table->timestamps();
+          $table->string('relation');
         });
     }
 

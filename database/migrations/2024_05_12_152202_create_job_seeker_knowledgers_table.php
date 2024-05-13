@@ -10,19 +10,22 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
-        Schema::create('job_seeker_knowledgers', function (Blueprint $table) {
-            $table->id();
-            $table->foreign('job_seekers_id')->references('id')->on('job_seekers');
-            $table->foreign('relationships_id')->references('id')->on('relationships');
-            $table->string('KnowledgersName');
-            $table->string('JobTitle');
-            $table->string('CompanyInto');
-            $table->integer('DirectCommunication');
-            $table->string('email')->uniqe();
-            $table->timestamps();
-        });
-    }
+{
+    Schema::create('job_seeker_knowledgers', function (Blueprint $table) {
+        $table->id();
+        $table->unsignedBigInteger('job_seekers_id'); 
+        $table->unsignedBigInteger('relationships_id'); 
+        $table->foreign('job_seekers_id')->references('id')->on('job_seekers');
+        $table->foreign('relationships_id')->references('id')->on('relationships');
+        $table->string('KnowledgersName');
+        $table->string('JobTitle');
+        $table->string('CompanyInto');
+        $table->integer('DirectCommunication');
+        $table->string('email')->unique(); // Corrected typo here
+        $table->timestamps();
+    });
+}
+
 
     /**
      * Reverse the migrations.

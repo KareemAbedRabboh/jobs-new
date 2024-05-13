@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('job_seeker_exps', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('job_levels_id'); 
+            $table->unsignedBigInteger('companies_id'); 
+            $table->unsignedBigInteger('cities_id');
             $table->foreign('job_levels_id')->references('id')->on('job_levels');
             $table->foreign('companies_id')->references('id')->on('companies');
             $table->foreign('cities_id')->references('id')->on('cities');
@@ -27,7 +30,7 @@ return new class extends Migration
             $table->timestamps();
         });
     }
-
+    
     /**
      * Reverse the migrations.
      */

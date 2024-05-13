@@ -11,13 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('job_skills_requirments', function (Blueprint $table) {
+        Schema::create('job_skills_requirements', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('jobs_id'); 
+            $table->unsignedBigInteger('skills_id'); 
             $table->foreign('jobs_id')->references('id')->on('jobs');
             $table->foreign('skills_id')->references('id')->on('skills');        
             $table->timestamps();
         });
     }
+    
 
     /**
      * Reverse the migrations.

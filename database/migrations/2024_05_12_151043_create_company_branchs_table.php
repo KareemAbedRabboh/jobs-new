@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('company_branchs', function (Blueprint $table) {
             $table->id();
-            $table->foreign('companies_id')->references('id')->on('companies');
-            $table->string('company_branchs');
+            $table->string('company_branchs')->nullable(false); 
             $table->timestamps();
+            $table->unsignedBigInteger('companies_id')->nullable(false); 
+            $table->foreign('companies_id')->references('id')->on('companies');
         });
     }
+    
 
     /**
      * Reverse the migrations.

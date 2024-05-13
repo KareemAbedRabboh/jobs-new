@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('files', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('file_types_id');
             $table->foreign('file_types_id')->references('id')->on('file_types');
             $table->string('fileURL');
             $table->timestamps();
         });
     }
+    
 
     /**
      * Reverse the migrations.

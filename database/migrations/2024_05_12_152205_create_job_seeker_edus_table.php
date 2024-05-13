@@ -13,15 +13,22 @@ return new class extends Migration
     {
         Schema::create('job_seeker_edus', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('files_id'); 
+            $table->unsignedBigInteger('job_seekers_id');
+            $table->unsignedBigInteger('majors_id'); 
+            $table->unsignedBigInteger('academic_degrees_id'); 
+            $table->unsignedBigInteger('universities_id'); 
             $table->foreign('files_id')->references('id')->on('files');
-            $table->string('JobTitle');
+            $table->foreign('job_seekers_id')->references('id')->on('job_seekers');
+            $table->foreign('majors_id')->references('id')->on('majors');
+            $table->foreign('academic_degrees_id')->references('id')->on('academic_degrees');
+            $table->foreign('universities_id')->references('id')->on('universities');
             $table->string('StartDate');
             $table->string('EndDate');
-            $table->integer('CompanyInfo');
-            $table->string('FunctionalTasks');
             $table->timestamps();
         });
     }
+    
 
     /**
      * Reverse the migrations.
