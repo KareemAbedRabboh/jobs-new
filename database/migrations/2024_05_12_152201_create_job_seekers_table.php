@@ -16,6 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('cities_id')->nullable(); // Define the cities_id column
             $table->unsignedBigInteger('genders_id')->nullable(); // Define the genders_id column
             $table->unsignedBigInteger('marital_statuses_id')->nullable(); // Define the marital_statuses_id column
+            $table->unsignedBigInteger('users_type')->nullable(true);
+            $table->foreign('users_type')->references('id')->on('users');
             $table->foreign('cities_id')->references('id')->on('cities');
             $table->foreign('genders_id')->references('id')->on('genders');
             $table->foreign('marital_statuses_id')->references('id')->on('marital_statuses');
