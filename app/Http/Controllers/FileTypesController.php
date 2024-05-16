@@ -59,10 +59,10 @@ class FileTypesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(FileTypes $fileTypes)
+    public function destroy( $fileTypes)
     {
         FileTypes::find($fileTypes)->delete();
 
-        return redirect()->route('fileTypes.index');
+        return redirect()->route('filetypes.index');
     }
 }

@@ -36,7 +36,7 @@
                                 <td>{{ $fileType->created_at }}</td>
                                 <td>{{ $fileType->updated_at }}</td>
                                 <td>
-                                    <form action="{{ route('fileTypes.destroy', $fileType) }}" method="POST">
+                                    <form action="{{ route('filetypes.destroy', $fileType) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm">Delete</button>
