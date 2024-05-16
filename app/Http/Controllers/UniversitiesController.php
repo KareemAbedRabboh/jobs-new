@@ -12,9 +12,9 @@ class UniversitiesController extends Controller
      */
     public function index()
     {
-        //
+        return view('universities');
     }
-
+    
     /**
      * Show the form for creating a new resource.
      */

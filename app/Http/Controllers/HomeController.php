@@ -2,113 +2,67 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
+use App\Models\home;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * Display a listing of the resource.
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index(Request $request)
-    {
-        if (view()->exists($request->path())) {
-            return view($request->path());
-        }
-        return abort(404);
-    }
-
-    public function root()
+    public function index()
     {
         return view('home');
     }
 
-
-    public function updateProfile(Request $request, $id)
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email'],
-            'avatar' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:1024'],
-        ]);
-
-        $user = User::find($id);
-        $user->name = $request->get('name');
-        $user->email = $request->get('email');
-
-        if ($request->file('avatar')) {
-            $avatar = $request->file('avatar');
-            $avatarName = time() . '.' . $avatar->getClientOriginalExtension();
-            $avatarPath = public_path('/images/');
-            $avatar->move($avatarPath, $avatarName);
-            $user->avatar =  $avatarName;
-        }
-
-        $user->update();
-        if ($user) {
-            Session::flash('message', 'User Details Updated successfully!');
-            Session::flash('alert-class', 'alert-success');
-            return response()->json([
-                'isSuccess' => true,
-                'Message' => "User Details Updated successfully!"
-            ], 200); // Status code here
-        } else {
-            Session::flash('message', 'Something went wrong!');
-            Session::flash('alert-class', 'alert-danger');
-            return response()->json([
-                'isSuccess' => true,
-                'Message' => "Something went wrong!"
-            ], 200); // Status code here
-        }
+        //
     }
 
-    public function updatePassword(Request $request, $id)
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
     {
-        $request->validate([
-            'current_password' => ['required', 'string'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
-        ]);
+        //
+    }
 
-        if (!(Hash::check($request->get('current_password'), Auth::user()->password))) {
-            return response()->json([
-                'isSuccess' => false,
-                'Message' => "Your Current password does not matches with the password you provided. Please try again."
-            ], 200); // Status code
-        } else {
-            $user = User::find($id);
-            $user->password = Hash::make($request->get('password'));
-            $user->update();
-            if ($user) {
-                Session::flash('message', 'Password updated successfully!');
-                Session::flash('alert-class', 'alert-success');
-                return response()->json([
-                    'isSuccess' => true,
-                    'Message' => "Password updated successfully!"
-                ], 200); // Status code here
-            } else {
-                Session::flash('message', 'Something went wrong!');
-                Session::flash('alert-class', 'alert-danger');
-                return response()->json([
-                    'isSuccess' => true,
-                    'Message' => "Something went wrong!"
-                ], 200); // Status code here
-            }
-        }
+    /**
+     * Display the specified resource.
+     */
+    public function show(Home $home)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(home $home)
+    {
+        //
+    }
+    public function root()
+    {
+        return view('home'); // Ensure this view exists in resources/views/welcome.blade.php
+    }
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request,home $home)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Home $home)
+    {
+        //
     }
 }

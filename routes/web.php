@@ -2,6 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\JobSeekerController;
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\UniversitiesController;
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,18 +20,25 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Auth::routes();
-//Language Translation
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'root'])->name('root');
+// Home and Profile related routes
+Route::get('/', [HomeController::class, 'root'])->name('root');
+Route::post('/update-profile/{id}', [HomeController::class, 'updateProfile'])->name('updateProfile');
+Route::post('/update-password/{id}', [HomeController::class, 'updatePassword'])->name('updatePassword');
+Route::get('/home', [HomeController::class, 'root']);
 
-//Update User Details
-Route::post('/update-profile/{id}', [App\Http\Controllers\HomeController::class, 'updateProfile'])->name('updateProfile');
-Route::post('/update-password/{id}', [App\Http\Controllers\HomeController::class, 'updatePassword'])->name('updatePassword');
+// User  routes
+Route::get('/users', [UsersController::class, 'index']);
 
-Route::get('{any}', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
-Route::get('/users', [UsersController::class, 'index'])->name('users.index');
-Route::get('/companies', [App\Http\Controllers\HomeController::class, 'companies'])->name('companies');
-Route::get('/jobseeker', [App\Http\Controllers\HomeController::class, 'jobseeker'])->name('jobseeker');
-Route::get('/universities', [App\Http\Controllers\HomeController::class, 'universities'])->name('universities.blade');
+// Company  routes
+Route::get('/companies', [CompanyController::class, 'index']);
+Route::delete('/companies/{company}', [CompanyController::class, 'destroy'])->name('companies.destroy');
 
+
+// Job Seeker  routes
+Route::get('/jobseeker', [JobSeekerController::class, 'index']);
+
+// University  routes
+Route::get('/universities', [UniversitiesController::class, 'index']);
