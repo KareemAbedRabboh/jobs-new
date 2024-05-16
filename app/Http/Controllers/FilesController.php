@@ -12,7 +12,8 @@ class FilesController extends Controller
      */
     public function index()
     {
-        //
+        $files = Files::all(); // Assuming \ is your model name
+        return view('Files', ['files' => $files]); 
     }
 
     /**
@@ -58,8 +59,10 @@ class FilesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Files $files)
+    public function destroy( $files)
     {
-        //
+        Files::find($files)->delete();
+
+        return redirect()->route('files.index');
     }
 }

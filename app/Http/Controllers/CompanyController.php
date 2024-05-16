@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+
 
 class CompanyController extends Controller
 {
@@ -59,8 +61,11 @@ class CompanyController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(company $company)
+    public function destroy(Company $company)
     {
-        //
+    
+        $company->delete(); 
+    
+        return redirect()->route('companies.index')->with('success', 'Company deleted successfully');
     }
 }

@@ -12,8 +12,10 @@ class UniversitiesController extends Controller
      */
     public function index()
     {
-        return view('universities');
+        $universities = Universities::all(); // Assuming University is your model name
+        return view('universities', ['universities' => $universities]); // Assuming your view file is named 'index.blade.php' and it's located in the 'universities' directory
     }
+    
     
     /**
      * Show the form for creating a new resource.
@@ -58,8 +60,10 @@ class UniversitiesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Universities $universities)
-    {
-        //
-    }
+    public function destroy( $Universities)
+    { 
+        Universities::find($Universities)->delete();
+    
+        return redirect()->route('universities.index')->with('success', 'Company deleted successfully');
+}
 }

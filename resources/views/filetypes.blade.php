@@ -12,32 +12,31 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">الجامعات  </h4>
-                <p class="card-title-desc">جدول جميع الحامعات  
+                <h4 class="card-title">الملفات  </h4>
+                <p class="card-title-desc">جدول جميع الملفات    
                 </p>
             </div>
             <div class="card-body">
-
                 <div class="card-body">
                     <table id="datatable" class="table table-bordered dt-responsive nowrap w-100">
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>University</th>
+                                <th>Type</th>
                                 <th>Created at</th>
                                 <th>Updated at</th>
                                 <th>Action</th> 
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($universities as $university)
+                            @foreach($fileTypes as $fileType)
                             <tr>
-                                <td>{{ $university->id }}</td>
-                                <td>{{ $university->university }}</td>
-                                <td>{{ $university->created_at }}</td>
-                                <td>{{ $university->updated_at }}</td>
+                                <td>{{ $fileType->id }}</td>
+                                <td>{{ $fileType->types }}</td>
+                                <td>{{ $fileType->created_at }}</td>
+                                <td>{{ $fileType->updated_at }}</td>
                                 <td>
-                                    <form action="{{ route('universities.destroy', $university) }}" method="POST">
+                                    <form action="{{ route('fileTypes.destroy', $fileType) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm">Delete</button>
@@ -48,6 +47,9 @@
                         </tbody>
                     </table>
                 </div>
+            </div>
+            
+                
 @endsection
 @section('script')
 <script src="{{ URL::asset('assets/libs/datatables.net/datatables.net.min.js') }}"></script>

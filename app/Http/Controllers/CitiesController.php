@@ -12,7 +12,8 @@ class CitiesController extends Controller
      */
     public function index()
     {
-        //
+        $cities = Cities::all(); // Assuming \ is your model name
+        return view('Cities', ['cities' => $cities]); 
     }
 
     /**
@@ -58,8 +59,10 @@ class CitiesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Cities $cities)
+    public function destroy($cities)
     {
-        //
+        Cities::find($cities)->delete();
+
+        return redirect()->route('cities.index');
     }
 }

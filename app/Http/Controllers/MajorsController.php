@@ -12,7 +12,8 @@ class MajorsController extends Controller
      */
     public function index()
     {
-        //
+        $majors = Majors::all(); // Assuming \ is your model name
+        return view('Majors', ['majors' => $majors]); 
     }
 
     /**
@@ -58,8 +59,10 @@ class MajorsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Majors $majors)
+    public function destroy( $majors)
     {
-        //
+        Majors::find($majors)->delete();
+
+        return redirect()->route('majors.index');
     }
 }

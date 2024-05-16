@@ -12,32 +12,51 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">الجامعات  </h4>
-                <p class="card-title-desc">جدول جميع الحامعات  
+                <h4 class="card-title">الوظائف  </h4>
+                <p class="card-title-desc">جدول جميع الوظائف   
                 </p>
             </div>
             <div class="card-body">
-
                 <div class="card-body">
                     <table id="datatable" class="table table-bordered dt-responsive nowrap w-100">
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>University</th>
+                                <th>Job Levels ID</th>
+                                <th>Companies ID</th>
+                                <th>Cities ID</th>
+                                <th>Job Title</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Job Salary</th>
+                                <th>Phone Number</th>
+                                <th>Job Description</th>
+                                <th>Address</th>
+                                <th>Contract Type</th>
                                 <th>Created at</th>
                                 <th>Updated at</th>
                                 <th>Action</th> 
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($universities as $university)
+                            @foreach($jobs as $job)
                             <tr>
-                                <td>{{ $university->id }}</td>
-                                <td>{{ $university->university }}</td>
-                                <td>{{ $university->created_at }}</td>
-                                <td>{{ $university->updated_at }}</td>
+                                <td>{{ $job->id }}</td>
+                                <td>{{ $job->job_levels_id }}</td>
+                                <td>{{ $job->companies_id }}</td>
+                                <td>{{ $job->cities_id }}</td>
+                                <td>{{ $job->JobTitle }}</td>
+                                <td>{{ $job->StartDate }}</td>
+                                <td>{{ $job->EndDate }}</td>
+                                <td>{{ $job->JobSalary }}</td>
+                                <td>{{ $job->phoneNumber }}</td>
+                                <td>{{ $job->JobDescription }}</td>
+                                <td>{{ $job->Address }}</td>
+                                <td>{{ $job->ContractType }}</td>
+                                <td>{{ $job->created_at }}</td>
+                                <td>{{ $job->updated_at }}</td>
                                 <td>
-                                    <form action="{{ route('universities.destroy', $university) }}" method="POST">
+                                    <form action="{{ route('jobs.destroy', $job) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm">Delete</button>
@@ -48,6 +67,7 @@
                         </tbody>
                     </table>
                 </div>
+                
 @endsection
 @section('script')
 <script src="{{ URL::asset('assets/libs/datatables.net/datatables.net.min.js') }}"></script>

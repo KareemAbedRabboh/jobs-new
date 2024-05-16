@@ -12,7 +12,8 @@ class AcademicDegreeController extends Controller
      */
     public function index()
     {
-        //
+        $academicDegree = AdemicDegreees::all(); // Assuming \ is your model name
+        return view('AdemicDegreees', ['academicDegree' => $academicDegree]); 
     }
 
     /**
@@ -58,8 +59,10 @@ class AcademicDegreeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(AcademicDegree $academicDegree)
+    public function destroy($academicDegree)
     {
-        //
+        academicDegree::find($academicDegree)->delete();
+
+        return redirect()->route('cities.index');
     }
 }

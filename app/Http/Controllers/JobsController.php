@@ -12,8 +12,11 @@ class JobsController extends Controller
      */
     public function index()
     {
-        //
+        $jobs = Jobs::all(); // Assuming \ is your model name
+        return view('Jobs', ['jobs' => $jobs]); // Changed 'Jobs' to 'jobs'
     }
+    
+
 
     /**
      * Show the form for creating a new resource.
@@ -58,8 +61,10 @@ class JobsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Jobs $jobs)
+    public function destroy( $jobs)
     {
-        //
+        jobs::find($jobs)->delete();
+
+        return redirect()->route('jobs.index');
     }
 }

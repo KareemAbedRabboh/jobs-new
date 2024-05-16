@@ -12,7 +12,8 @@ class FileTypesController extends Controller
      */
     public function index()
     {
-        //
+        $fileTypes = FileTypes::all(); // Assuming \ is your model name
+        return view('FileTypes', ['fileTypes' => $fileTypes]); 
     }
 
     /**
@@ -60,6 +61,8 @@ class FileTypesController extends Controller
      */
     public function destroy(FileTypes $fileTypes)
     {
-        //
+        FileTypes::find($fileTypes)->delete();
+
+        return redirect()->route('fileTypes.index');
     }
 }

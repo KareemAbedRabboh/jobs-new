@@ -7,6 +7,16 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\JobSeekerController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\UniversitiesController;
+use App\Http\Controllers\JobsController;
+use App\Http\Controllers\JobSeekerSkillsController;
+use App\http\Controllers\CitiesController;
+use App\http\Controllers\MajorsController;
+use App\http\Controllers\AcademicdegreeController;
+use App\http\Controllers\FilesController;
+use App\http\Controllers\FileTypesController;
+
+
+
 
 
 
@@ -30,15 +40,35 @@ Route::post('/update-password/{id}', [HomeController::class, 'updatePassword'])-
 Route::get('/home', [HomeController::class, 'root']);
 
 // User  routes
-Route::get('/users', [UsersController::class, 'index']);
 
 // Company  routes
-Route::get('/companies', [CompanyController::class, 'index']);
-Route::delete('/companies/{company}', [CompanyController::class, 'destroy'])->name('companies.destroy');
+Route::resource('/companies', CompanyController::class);
+
 
 
 // Job Seeker  routes
-Route::get('/jobseeker', [JobSeekerController::class, 'index']);
+Route::resource('/jobseeker', JobSeekerController::class);
 
 // University  routes
-Route::get('/universities', [UniversitiesController::class, 'index']);
+Route::resource('/universities', UniversitiesController::class);
+
+//jobs route
+Route::resource('/jobs', JobsController::class);
+
+Route::resource('/jobseeker_skills', JobSeekerSkillsController::class);
+
+Route::resource('/cities', CitiesController::class);
+
+Route::resource('/majors', MajorsController::class);
+
+Route::resource('/academicdegree', AcademicdegreeController::class);
+
+Route::resource('/files', FilesController::class);
+
+Route::resource('/filetypes', FileTypesController::class);
+
+
+
+
+
+

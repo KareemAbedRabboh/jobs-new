@@ -7,10 +7,7 @@
 
 @endsection
 @section('content')
-@component('components.breadcrumb')
-@slot('li_1') Tables @endslot
-@slot('title') DataTables @endslot
-@endcomponent
+
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -18,9 +15,8 @@
                 <h4 class="card-title"> الباحثين عن عمل </h4>
                 <p class="card-title-desc">جدول الباحثين عن عمل
                 </p>
-            </div>
                 <div class="card-body">
-                    <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
+                    <table id="datatable" class="table table-bordered dt-responsive nowrap w-100">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -36,6 +32,7 @@
                                 <th>Date of Birth</th>
                                 <th>Created at</th>
                                 <th>Updated at</th>
+                                <th>Action</th> 
                             </tr>
                         </thead>
                         <tbody>
@@ -54,11 +51,19 @@
                                 <td>{{ $jobseeker->dateofbirth }}</td>
                                 <td>{{ $jobseeker->created_at }}</td>
                                 <td>{{ $jobseeker->updated_at }}</td>
+                                <td>
+                                    <form action="{{ route('jobseeker.destroy', $jobseeker) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
+                
                 
                     
 @endsection

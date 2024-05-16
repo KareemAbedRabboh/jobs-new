@@ -12,9 +12,11 @@ class JobSeekerSkillsController extends Controller
      */
     public function index()
     {
-        //
+        $jobseeker_skills = JobSeekerSkills::all(); // Assuming JobseekerSkill is your model name
+        return view('jobseeker_skills', ['jobseeker_skills' => $jobseeker_skills]); // Corrected variable name and view file name
     }
-
+    
+    
     /**
      * Show the form for creating a new resource.
      */
@@ -58,8 +60,10 @@ class JobSeekerSkillsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(JobSeekerSkills $jobSeekerSkills)
+    public function destroy( $jobSeekerSkills)
     {
-        //
+        jobSeekerSkills::find($jobSeekerSkills)->delete();
+
+        return redirect()->route('jobseeker_skills.index');
     }
 }
